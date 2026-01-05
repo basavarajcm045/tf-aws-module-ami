@@ -16,13 +16,9 @@ variable "os_type" {
     condition = contains([
       "amazon-linux",
       "ubuntu",
-      "rhel-8",
-      "rhel-9",
-      "centos-7",
-      "rocky-8",
-      "rocky-9",
-      "windows-2019",
-      "windows-2022",
+      "rhel",
+      "centos",
+      "windows",
       "custom"
     ], var.os_type)
     error_message = "Invalid os_type. Must be one of: amazon-linux-2, amazon-linux-2023, ubuntu-20.04, ubuntu-22.04, ubuntu-24.04, rhel-8, rhel-9, centos-7, rocky-8, rocky-9, windows-2019, windows-2022, custom"

@@ -10,6 +10,14 @@ output "amazon_linux_ami_id" {
   value = module.ami_amazon_linux.ami_id
 }
 
+output "ubuntu_ami_id" {
+  value = module.ami_ubuntu.ami_id
+}
+
+output "windows_ami_id" {
+  value = module.ami_windows.ami_id
+}
+
 /*output "ami_id" {
   description = "Selected AMI ID - Use this for EC2 instances"
   value       = module.ami_amazon_linux.ami_id

@@ -1,10 +1,10 @@
-# RHEL, CentOS, Rocky Linux AMI data sources
+# RHEL, CentOS AMI data sources
 
 data "aws_ami" "rhel" {
   count = var.os_type == "rhel" ? 1 : 0
 
   most_recent = var.most_recent
-  owners      = var.ami_owners != null ? var.ami_owners : ["309956199498"] # Red Hat
+  owners      = var.ami_owners != null ? var.ami_owners : ["309956199498"] 
 
   filter {
     name   = "name"
@@ -32,13 +32,13 @@ data "aws_ami" "rhel" {
   }
 
   # Optional: Filter by OS version tag
-  dynamic "filter" {
+  /*dynamic "filter" {
     for_each = var.os_version != null ? [var.os_version] : []
     content {
-      name   = "tag:Version"
+      name   = "tag:version"
       values = [filter.value]
     }
-  }
+  }*/
 
   # Additional custom tag filters
   dynamic "filter" {

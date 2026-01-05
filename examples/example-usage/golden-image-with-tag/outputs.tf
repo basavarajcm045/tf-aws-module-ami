@@ -10,11 +10,6 @@ output "amazon_linux_ami_id" {
   value = module.ami_amazon_linux.ami_id
 }
 
-/*output "ami_id" {
-  description = "Selected AMI ID - Use this for EC2 instances"
-  value       = module.ami_amazon_linux.ami_id
-}*/
-
 output "ami_name" {
   description = "Selected AMI name"
   value       = module.ami_amazon_linux.ami_name

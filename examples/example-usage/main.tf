@@ -1,5 +1,5 @@
 # ============================================
-# EXAMPLE 1: Simple Amazon Linux 
+# EXAMPLE: Simple Amazon Linux 
 # ============================================
 
 module "ami_amazon_linux" {
@@ -8,50 +8,34 @@ module "ami_amazon_linux" {
   os_type         = "amazon-linux"
   ami_owners      = ["533267218601"]
   ami_name_filter = "amzn-demo"
-  most_recent = true
-  ami_tag_filters = {
-    environment = "dev"
-    team        = "platform"
-    version     = "1.1.1"
-    //version     = "0.0.1"
-  }
-
-  architecture = "x86_64"
-  virtualization_type = "hvm"
-  root_device_type = "ebs"
+  
 }
 
-# ============================================
-# EXAMPLE 2: Ubuntu 
-# ============================================
-
-module "ami_ubuntu" {
+module "ami_windows" {
   source = "../../"
 
-  os_type         = "ubuntu"
+  os_type         = "windows"
   ami_owners      = ["533267218601"]
-  ami_name_filter = "ubuntu/image"
-  most_recent     = true
-  ami_tag_filters = {
-    environment = "dev"
-    os_version  = "24.04"
-    base_os     = "ubuntu-24.04"
-  }
-  architecture        = "x86_64"
-  virtualization_type = "hvm"
-  root_device_type    = "ebs"
+  ami_name_filter = "windows-2025"
+  
 }
 
-# ============================================
-# EXAMPLE 6: ARM64 Architecture (Graviton)
-# ============================================
+/*module "ami_rhel" {
+  source = "../../"
 
-/*module "ami_arm64" {
-  source = "../../modules/ami"
-
-  os_type      = "amazon-linux-2023"
-  architecture = "arm64"
-}*/
+  os_type         = "rhel"
+  ami_owners      = ["533267218601"]
+  ami_name_filter = "rhel-demo"
+  most_recent     = true
+  /*ami_tag_filters = {
+    environment = "dev"
+    os_version  = "10"
+    base_os     = "rhel-10"
+  }*/
+  /*architecture        = "x86_64"
+  virtualization_type = "hvm"
+  root_device_type    = "ebs"*/
+//}
 
 # Use in EC2 module
 /*module "ec2" {
