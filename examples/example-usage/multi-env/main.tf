@@ -3,7 +3,7 @@
 # ============================================
 
 module "ami_amazon_linux" {
-  source = "../../../"
+  source = "../../../module"
 
   os_type         = var.os_type
   ami_owners      = [var.ami_owner]
@@ -25,7 +25,7 @@ module "ami_amazon_linux" {
 # ============================================
 
 module "ami_ubuntu" {
-  source = "../../../"
+  source = "../../../module"
 
   os_type         = "ubuntu"
   ami_owners      = [var.ami_owner]
@@ -46,7 +46,7 @@ module "ami_ubuntu" {
 # ============================================
 
 module "ami_windows" {
-  source = "../../.."
+  source = "../../../module"
 
   os_type         = "windows"
   ami_owners      = [var.ami_owner]

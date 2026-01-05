@@ -3,7 +3,7 @@
 # ============================================
 
 module "ami_amazon_linux" {
-  source = "../../.."
+  source = "../../../module"
 
   os_type         = "amazon-linux"
   ami_owners      = ["533267218601"]

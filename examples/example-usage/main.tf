@@ -3,7 +3,7 @@
 # ============================================
 
 module "ami_amazon_linux" {
-  source = "../../"
+  source = "../../module"
 
   os_type         = "amazon-linux"
   ami_owners      = ["533267218601"]
@@ -12,7 +12,7 @@ module "ami_amazon_linux" {
 }
 
 module "ami_windows" {
-  source = "../../"
+  source = "../../module"
 
   os_type         = "windows"
   ami_owners      = ["533267218601"]
@@ -21,7 +21,7 @@ module "ami_windows" {
 }
 
 /*module "ami_rhel" {
-  source = "../../"
+  source = "../../module"
 
   os_type         = "rhel"
   ami_owners      = ["533267218601"]
