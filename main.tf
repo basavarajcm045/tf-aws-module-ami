@@ -1,0 +1,40 @@
+#Core AMI data source logic
+
+#========== CONDITIONAL AMI SELECTION ==========
+
+# This module returns the appropriate AMI based on the operating system type
+# Only ONE of these data sources will be used based on var.os_type
+
+locals {
+  # Determine which AMI to use based on os_type
+  selected_ami_id = (
+    var.os_type == "amazon-linux" ? data.aws_ami.amazon_linux[0].id :
+    var.os_type == "ubuntu" ? data.aws_ami.ubuntu[0].id :
+    null
+  )
+
+  selected_ami_name = (
+    var.os_type == "amazon-linux" ? data.aws_ami.amazon_linux[0].id :
+    var.os_type == "ubuntu" ? data.aws_ami.ubuntu[0].id :
+    null
+  )
+
+  # Get complete AMI object for additional metadata
+  selected_ami = (
+    var.os_type == "amazon-linux" ? data.aws_ami.amazon_linux[0].id :
+    var.os_type == "ubuntu" ? data.aws_ami.ubuntu[0].id :
+    null
+  )
+}
+
+#========== VALIDATION ==========
+
+# Ensure an AMI was found
+resource "null_resource" "ami_validation" {
+  count = local.selected_ami_id == null ? 1 : 0
+
+  provisioner "local-exec" {
+    command = "echo 'ERROR: No AMI found for os_type=${var.os_type}' && exit 1"
+  }
+}
+
