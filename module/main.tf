@@ -11,6 +11,7 @@ locals {
     var.os_type == "amazon-linux" ? data.aws_ami.amazon_linux[0].id :
     var.os_type == "ubuntu" ? data.aws_ami.ubuntu[0].id :
     var.os_type == "rhel" ? data.aws_ami.rhel[0].id :
+    var.os_type == "centos" ? data.aws_ami.centos[0].id :
     var.os_type == "windows" ? data.aws_ami.windows[0].id :
     null
   )
@@ -19,6 +20,7 @@ locals {
     var.os_type == "amazon-linux" ? data.aws_ami.amazon_linux[0].name :
     var.os_type == "ubuntu" ? data.aws_ami.ubuntu[0].name :
     var.os_type == "rhel" ? data.aws_ami.rhel[0].name :
+    var.os_type == "centos" ? data.aws_ami.centos[0].name :
     var.os_type == "windows" ? data.aws_ami.windows[0].name :
     null
   )
@@ -28,6 +30,7 @@ locals {
     var.os_type == "amazon-linux" ? data.aws_ami.amazon_linux[0] :
     var.os_type == "ubuntu" ? data.aws_ami.ubuntu[0] :
     var.os_type == "rhel" ? data.aws_ami.rhel[0] :
+    var.os_type == "centos" ? data.aws_ami.centos[0] :
     var.os_type == "windows" ? data.aws_ami.windows[0] :
     null
   )
