@@ -2,12 +2,17 @@
 
 #========== CONDITIONAL AMI SELECTION ==========
 
-# This module returns the appropriate AMI based on the operating system type
-# Only ONE of these data sources will be used based on var.os_type
+# This module returns the appropriate AMI ID based on the filter.
 
 locals {
 
   selected_ami_id = try(data.aws_ami.data[0].id, null)
+
+  /*
+  selected_ami_id = length(data.aws_ami.data) > 0
+    ? data.aws_ami.data[0].id
+    : null
+}*/
 
   /*selected_ami_id = try(
                           data.aws_ami.custom[0].id,
@@ -22,22 +27,9 @@ locals {
 
   selected_ami_name = try(data.aws_ami.data[0].name, null)
 
-  /*selected_ami_name = (
-    //var.os_type == "amazon-linux" ? data.aws_ami.data[0].name :
-    //var.os_type == "windows" ? data.aws_ami.data[0].name :
-    var.os_type == "custom" ? data.aws_ami.data[0].name :
-    null
-  )*/
-
   # Get complete AMI object for additional metadata
-
   selected_ami = try(data.aws_ami.data[0], null)
-  /*selected_ami = (
-    //var.os_type == "amazon-linux" ? data.aws_ami.data[0] :
-    //var.os_type == "windows" ? data.aws_ami.data[0] :
-    var.os_type == "custom" ? data.aws_ami.data[0] :
-    null
-  )*/
+
 }
 
 #========== VALIDATION ==========
