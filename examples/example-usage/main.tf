@@ -5,7 +5,7 @@
 module "ami_amazon_linux" {
   source = "../../module"
 
-  os_type         = "amazon-linux"
+  os_type         = "custom"
   ami_owners      = ["533267218601"]
   ami_name_filter = "amzn-demo"
   
@@ -14,7 +14,7 @@ module "ami_amazon_linux" {
 module "ami_windows" {
   source = "../../module"
 
-  os_type         = "windows"
+  os_type         = "custom"
   ami_owners      = ["533267218601"]
   ami_name_filter = "windows-2025"
   

@@ -2,27 +2,10 @@
 
 #========== OPERATING SYSTEM SELECTION ==========
 
-variable "region" {
-  description = "AWS region to search for AMIs"
-  type        = string
-  default     = "eu-west-2"
-  
-}
 variable "os_type" {
   description = "Operating system type"
   type        = string
 
-  validation {
-    condition = contains([
-      "amazon-linux",
-      "ubuntu",
-      "rhel",
-      "centos",
-      "windows",
-      "custom"
-    ], var.os_type)
-    error_message = "Invalid os_type. Must be one of: amazon-linux-2, amazon-linux-2023, ubuntu-20.04, ubuntu-22.04, ubuntu-24.04, rhel-8, rhel-9, centos-7, rocky-8, rocky-9, windows-2019, windows-2022, custom"
-  }
 }
 
 variable "os_version" {
@@ -97,27 +80,8 @@ variable "root_device_type" {
   }
 }
 
-#========== METADATA ==========
 
-variable "project_name" {
-  description = "Project name for tagging and identification"
-  type        = string
-  default     = ""
-}
 
-variable "environment" {
-  description = "Environment name (dev, staging, prod)"
-  type        = string
-  default     = ""
 
-  validation {
-    condition     = var.environment == "" || contains(["dev", "staging", "prod"], var.environment)
-    error_message = "Environment must be dev, staging, or prod."
-  }
-}
 
-variable "tags" {
-  description = "Additional tags to apply to resources"
-  type        = map(string)
-  default     = {}
-}
+

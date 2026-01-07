@@ -23,11 +23,11 @@ module "ami_windows" {
 }
 
 # Use in EC2 module
-module "ec2" {
+/*module "ec2" {
   source = "../../../modules/ec2"
   
   ami_id = module.ami_amazon_linux.ami_id
   # ... other EC2 config
-}
+}*/
 
 

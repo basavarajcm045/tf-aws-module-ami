@@ -1,14 +1,14 @@
-#========== CENTOS 7 ==========
+#Amazon Linux AMI data sources
 
-data "aws_ami" "centos_7" {
-  count = var.os_type == "centos-7" ? 1 : 0
+data "aws_ami" "data" {
+  count = var.os_type == "custom" ? 1 : 0
 
   most_recent = var.most_recent
-  owners      = var.ami_owners != null ? var.ami_owners : ["125523088429"] # CentOS.org
+  owners      = var.ami_owners != null ? var.ami_owners : ["137112412989"] # Amazon
 
   filter {
     name   = "name"
-    values = var.ami_name_filter != null ? [var.ami_name_filter] : ["CentOS*7*${var.architecture}*"]
+    values = [var.ami_name_filter]
   }
 
   filter {
@@ -31,19 +31,14 @@ data "aws_ami" "centos_7" {
     values = ["available"]
   }
 
-  filter {
-    name   = "product-code"
-    values = ["aw0evgkw8e5c1q413zgy5pjce"]
-  }
-
   # Optional: Filter by OS version tag
-  dynamic "filter" {
+  /*dynamic "filter" {
     for_each = var.os_version != null ? [var.os_version] : []
     content {
-      name   = "tag:Version"
+      name   = "tag:version"
       values = [filter.value]
     }
-  }
+  }*/
 
   # Additional custom tag filters
   dynamic "filter" {
