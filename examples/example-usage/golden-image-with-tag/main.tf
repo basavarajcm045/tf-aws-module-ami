@@ -5,14 +5,14 @@
 module "ami_amazon_linux" {
   source = "../../../module"
 
-  os_type         = "amazon-linux"
-  ami_owners      = ["533267218601"]
-  ami_name_filter = "amzn-demo"
+  os_type         = var.os_type
+  ami_owners      = [var.ami_owner]
+  ami_name_filter = var.ami_name_filter
   most_recent     = true
   ami_tag_filters = {
-    environment = "dev"
-    team        = "platform"
-    version     = "1.1.1"
+    environment = var.ami_tag_filters["environment"]
+    team        = var.ami_tag_filters["team"]
+    version     = var.ami_tag_filters["version"]
   }
 }
 

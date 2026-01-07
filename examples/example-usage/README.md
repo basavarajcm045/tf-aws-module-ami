@@ -36,11 +36,6 @@ This Terraform module manages AWS AMI with support for:
 
 ## 🚀 Quick Start (3 Steps)
 
-### Basic Usage
-
-```hcl
-```
-
 ### Step 1: Use the Module
 
 ```hcl
