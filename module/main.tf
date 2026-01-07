@@ -7,34 +7,37 @@
 
 locals {
 
-  //custom_ami_id = try(data.aws_ami.data[0].id, null)
+  selected_ami_id = try(data.aws_ami.data[0].id, null)
+
+  /*selected_ami_id = try(
+                          data.aws_ami.custom[0].id,
+                          data.aws_ami.amazon[0].id
+                      )*/
 
   # Determine which AMI to use based on os_type
-  selected_ami_id = (
+  /*selected_ami_id = (
     var.os_type == "custom" ? data.aws_ami.data[0].id :
     null
-  )
+  )*/
 
-  selected_ami_name = (
+  selected_ami_name = try(data.aws_ami.data[0].name, null)
+
+  /*selected_ami_name = (
     //var.os_type == "amazon-linux" ? data.aws_ami.data[0].name :
-    //var.os_type == "ubuntu" ? data.aws_ami.ubundatatu[0].name :
-    //var.os_type == "rhel" ? data.aws_ami.data[0].name :
-    //var.os_type == "centos" ? data.aws_ami.data[0].name :
     //var.os_type == "windows" ? data.aws_ami.data[0].name :
     var.os_type == "custom" ? data.aws_ami.data[0].name :
     null
-  )
+  )*/
 
   # Get complete AMI object for additional metadata
-  selected_ami = (
+
+  selected_ami = try(data.aws_ami.data[0], null)
+  /*selected_ami = (
     //var.os_type == "amazon-linux" ? data.aws_ami.data[0] :
-    //var.os_type == "ubuntu" ? data.aws_ami.data[0] :
-    //var.os_type == "rhel" ? data.aws_ami.data[0] :
-    //var.os_type == "centos" ? data.aws_ami.data[0] :
     //var.os_type == "windows" ? data.aws_ami.data[0] :
     var.os_type == "custom" ? data.aws_ami.data[0] :
     null
-  )
+  )*/
 }
 
 #========== VALIDATION ==========

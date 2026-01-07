@@ -1,11 +1,4 @@
 
-variable "os_type" {
-  description = "The operating system type for the AMI (e.g., 'amazon-linux', 'ubuntu', 'rhel', 'centos', 'windows')."
-  type        = string
-  default     = "custom"
-  
-}
-
 variable "ami_owner" { 
   description = "The AWS account ID of the AMI owner."
   type        = string

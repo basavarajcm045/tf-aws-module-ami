@@ -6,17 +6,17 @@
 module "ami" {
   source = "../../../module/"
 
-  os_type         = var.os_type
   ami_name_filter = var.ami_name_filter
   ami_owners      = [var.ami_owner]
-  
+
   ami_tag_filters = {
-    version     = var.ami_tag_filters["version"]
+    version = var.ami_tag_filters["version"]
   }
 }
 
+
 # Use AMI in EC2 instance
-module "ec2_web_servers" {
+/*module "ec2_web_servers" {
   source = "../../../module/ec2"
 
   instance_count = 3
@@ -69,4 +69,4 @@ resource "aws_autoscaling_group" "web_asg" {
     value               = "web-server-asg"
     propagate_at_launch = true
   }
-}
+}*/

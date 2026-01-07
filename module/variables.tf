@@ -5,6 +5,7 @@
 variable "os_type" {
   description = "Operating system type"
   type        = string
+  default     = "custom"
 
 }
 

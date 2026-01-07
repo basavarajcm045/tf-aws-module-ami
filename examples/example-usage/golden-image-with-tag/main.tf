@@ -5,7 +5,6 @@
 module "ami_amazon_linux" {
   source = "../../../module"
 
-  os_type         = var.os_type
   ami_owners      = [var.ami_owner]
   ami_name_filter = var.ami_name_filter
   most_recent     = true
