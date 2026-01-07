@@ -1,4 +1,4 @@
-# Terraform Module: Simple Storage Service
+# Terraform Module: Amazon Machine Image
 
 ## Table of Contents
 
@@ -15,48 +15,15 @@
 
 ## Overview
 
-This Terraform module creates and manages AWS S3 with support for:
+A **production-ready, enterprise-grade AWS AMI data source module** that:
 
-- Bucket creation
-- Versioning and Object lock
-- Encryption and KMS key creation
-- Public access block
-- Lifecycle configuration
-- Bucket Policy
+- ✅ Finds and selects AMIs based on OS, version, tags, owner
+- ✅ Integrates seamlessly with EC2 and Auto Scaling Groups
+- ✅ Comprehensive documentation and examples
+- ✅ Multi-architecture support (x86_64, ARM64)
 - 
+
 ## Features
-
-  ### 🔒 Security
-- ✅ Server-side encryption (AES256 or KMS)
-- ✅ SSL/TLS enforcement
-- ✅ Public access blocking
-- ✅ Bucket policies with least privilege
-- ✅ IAM access controls
-- ✅ Versioning and MFA delete protection
-- ✅ Object lock for compliance
-- ✅ Encrypted logging
-
-### 📊 Lifecycle Management
-- ✅ Automatic object archival
-- ✅ Storage class transitions (S3, IA, Glacier, Deep Archive)
-- ✅ Expiration policies
-- ✅ Noncurrent version management
-- ✅ Incomplete multipart upload cleanup
-- ✅ Intelligent tiering
-- ✅ Option to choose required lifecycle policies as per bucket requirement.
-
-### 📋 Compliance & Governance
-- ✅ Access logging with audit trail
-- ✅ Inventory reports (CSV, Parquet, ORC)
-- ✅ CloudWatch metrics and alarms
-- ✅ Object lock (GOVERNANCE or COMPLIANCE mode)
-- ✅ Cross-region replication
-- ✅ Retention policies
-- ✅ Compliance summary reporting
-
-- **Supports multiple types**: Development env, Production env - Max security and compliance, Static Website hosting, Backup-read only replica, Data lake - optimized for analysis.
-- **Access logs** configuration (S3 bucket & prefix).
-- **Deletion protection** toggle.
 
 ## Requirements
 
@@ -65,32 +32,58 @@ This Terraform module creates and manages AWS S3 with support for:
 | terraform | >= 1.5.6 |
 | aws | >= 5.22 |
 
+## Key Features
+
+### 1. **Simple OS Selection**
+
+```hcl
+os_type = "amazon-linux"  # That's it!
+```
+
+### 2. **Custom Golden Image Filtering**
+
+```hcl
+os_type         = "custom"
+ami_owners      = ["123456789012"]
+ami_name_filter = "golden-image-webserver-*"
+
+ami_tag_filters = {
+  Environment = "production"
+  Version     = "2.1.0"
+  Hardened    = "true"
+}
+```
+
+### 3. **Architecture Support**
+```hcl
+architecture = "arm64"  # Graviton support
+```
+
+### 4. **Automatic Metadata**
+```hcl
+# Module automatically provides:
+- ami_id                  # For EC2 instances
+- ami_name                # For documentation
+- default_ssh_user        # ubuntu, ec2-user, etc.
+- ami_creation_date       # When AMI was created
+- is_windows              # Boolean helper
+```
+
 ## Usage
 
-### Simple storage service
+### Amazon Machine Image
 
 This is just a sample code. Please refer to example folder for actual use case.
 
 ### Basic Usage
 
 ```hcl
-module "s3_bucket" {
-  # Path to your S3 module
-  source = "../../tf-aws-module-s3"
 
-  project_name = "myapp"
-  environment  = "dev"
-  bucket_name  = "myapp-dev-bucket"
-
-  tags = {
-    Team = "Engineering"
-  }
-}
 ```
-### Get Bucket Information
+### Get Image Information
 
 ```bash
-terraform output -from-module=./modules/s3
+terraform output -from-module=./module/
 ```
 ## Configuration Guide
 

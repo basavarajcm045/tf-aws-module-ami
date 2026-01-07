@@ -13,15 +13,6 @@
 - [Outputs](#outputs)
 - [Notes](#notes)
 
-## Overview
-
-This Terraform module manages AWS AMI with support for:
-
-- ✅ Finds and selects AMIs based on OS, version, tags, owner
-- ✅ Integrates seamlessly with EC2 and Auto Scaling Groups
-- ✅ Comprehensive documentation and examples
-- ✅ Multi-architecture support (x86_64, ARM64)
-- 
 ## Features
 
 
@@ -34,7 +25,7 @@ This Terraform module manages AWS AMI with support for:
 
 ## Usage
 
-## 🚀 Quick Start (3 Steps)
+## Quick Start (3 Steps)
 
 ### Step 1: Use the Module
 
@@ -42,7 +33,7 @@ This Terraform module manages AWS AMI with support for:
 module "ami" {
   source = "../../../module"
 
-  os_type = "ubuntu-22.04"
+  os_type = "ubuntu"
 }
 ```
 
@@ -65,36 +56,66 @@ terraform plan
 terraform apply
 ```
 
-## Supported Operating Systems
+## Common Use Cases
 
-## Key Features
-
-### 1. **Simple OS Selection**
+### Use Case 1: Development (Latest Public AMI)
 
 ```hcl
-os_type = "amazon-linux"  # That's it!
-```
+module "ami_dev" {
+  source = "../../module"
 
-### 2. **Custom Golden Image Filtering**
-
-```hcl
-os_type         = "custom"
-ami_owners      = ["123456789012"]
-ami_name_filter = "golden-image-webserver-*"
-
-ami_tag_filters = {
-  Environment = "production"
-  Version     = "2.1.0"
-  Hardened    = "true"
+  os_type      = "amazon-linux"
+  project_name = "myapp"
+  environment  = "dev"
 }
 ```
 
-### 3. **Architecture Support**
+### Use Case 2: Production (Specific Golden Image)
+
 ```hcl
-architecture = "arm64"  # Graviton support
+module "ami_prod" {
+  source = "./modules/ami"
+
+  os_type         = "custom"
+  ami_owners      = ["123456789012"]
+  ami_name_filter = "prod-golden-v2.1.0"
+  
+  ami_tag_filters = {
+    Environment = "production"
+    Approved    = "true"
+    SHA         = "abc123"
+  }
+}
 ```
 
-## Common Use Cases
+### Use Case 3: Multi-Account Shared AMIs
+
+```hcl
+module "ami_shared" {
+  source = "./modules/ami"
+
+  os_type    = "custom"
+  ami_owners = [
+    "123456789012",  # Account A
+    "987654321098"   # Account B
+  ]
+  
+  ami_tag_filters = {
+    SharedService = "platform"
+  }
+}
+```
+
+### Use Case 4: ARM64 (Graviton) Instances
+
+```hcl
+module "ami_graviton" {
+  source = "./modules/ami"
+
+  os_type      = "amazon-linux-2023"
+  architecture = "arm64"
+}
+```
 
 ### Use Case 1: Development (Latest Public AMI)
 
