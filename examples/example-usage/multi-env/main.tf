@@ -65,13 +65,12 @@ module "ami_windows" {
 */
 
 # Output all AMI information
-output "ami_complete_info" {
+/*output "ami_complete_info" {
   value = {
     id                  = module.ami_amazon_linux.ami_id
     name                = module.ami_amazon_linux.ami_name
-    owner               = module.ami_amazon_linux.ami_owner_id
     architecture        = module.ami_amazon_linux.ami_architecture
     creation_date       = module.ami_amazon_linux.ami_creation_date
-    description         = module.ami_amazon_linux.ami_description
+    
   }
-}
+}*/

@@ -1,14 +1,8 @@
-variable "architecture" {
-  description = "The architecture of the AMI (e.g., 'x86_64' or 'arm64')."
-  type        = string
-  default     = "x86_64"
-
-}
 
 variable "os_type" {
   description = "The operating system type for the AMI (e.g., 'amazon-linux', 'ubuntu', 'rhel', 'centos', 'windows')."
   type        = string
-  default     = "amazon-linux"
+  default     = "custom"
   
 }
 
@@ -33,6 +27,13 @@ variable "ami_tag_filters" {
     team        = "platform"
     version     = "1.1.1"
   }
+}
+
+variable "architecture" {
+  description = "The architecture of the AMI (e.g., 'x86_64' or 'arm64')."
+  type        = string
+  default     = "x86_64"
+
 }
 
 variable "virtualization_type" {

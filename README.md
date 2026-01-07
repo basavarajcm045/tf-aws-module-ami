@@ -20,12 +20,9 @@ This Module configuration imports the module from the parent directory and suppl
 │       ├── main.tf
 │       ├── outputs.tf
 │       └── variables.tf
+|       |-- README.md
 |---module
-|.   |-- data-amazon-linux.tf
-|    |-- data-centos.tf
-|    |-- data-rhel.tf
-|    |-- data-ubuntu.tf
-|    |-- data-windows.tf
+|.   |-- data.tf
 |    |-- main.tf
 |    |-- outputs.tf
 |    |-- providers.tf

@@ -45,39 +45,25 @@ variable "ami_tag_filters" {
   default     = {}
 }
 
-#========== AMI ATTRIBUTES ==========
-
 variable "architecture" {
   description = "AMI architecture (x86_64 or arm64)"
   type        = string
-  default     = "x86_64"
+  default     = null
 
-  validation {
-    condition     = contains(["x86_64", "arm64"], var.architecture)
-    error_message = "Architecture must be x86_64 or arm64."
-  }
 }
 
 variable "virtualization_type" {
   description = "AMI virtualization type"
   type        = string
-  default     = "hvm"
+  default     = null
 
-  validation {
-    condition     = contains(["hvm", "paravirtual"], var.virtualization_type)
-    error_message = "Virtualization type must be hvm or paravirtual."
-  }
 }
 
 variable "root_device_type" {
   description = "AMI root device type"
   type        = string
-  default     = "ebs"
+  default     = null
 
-  validation {
-    condition     = contains(["ebs", "instance-store"], var.root_device_type)
-    error_message = "Root device type must be ebs or instance-store."
-  }
 }
 
 

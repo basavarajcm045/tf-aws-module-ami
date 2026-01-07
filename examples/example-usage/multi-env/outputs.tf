@@ -4,10 +4,6 @@ output "amazon_linux_ami_id" {
   value = module.ami_amazon_linux.ami_id
 }
 
-output "windows_ami_id" {
-  value = module.ami_windows.ami_id
-}
-
 output "ami_name" {
   description = "Selected AMI name"
   value       = module.ami_amazon_linux.ami_name
@@ -42,3 +38,24 @@ output "ami_tags" {
   description = "Selected AMI tags"
   value       = module.ami_amazon_linux.ami_tags
 }
+
+#========== Ubuntu ==========
+
+output "ubuntu_ami_id" {
+  value = module.ami_ubuntu.ami_id
+}
+
+output "ubuntu_ami_name" {
+  description = "Selected AMI name"
+  value       = module.ami_ubuntu.ami_name
+}
+
+output "windows_ami_id" {
+  value = module.ami_windows.ami_id
+}
+
+output "windows_ami_name" {
+  description = "Selected AMI name"
+  value       = module.ami_windows.ami_name
+}
+

@@ -1,4 +1,3 @@
-#========== PRIMARY OUTPUTS (For EC2/ASG modules) ==========
 
 output "ami_id" {
   description = "Selected AMI ID - Use this for EC2 instances"

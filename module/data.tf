@@ -12,24 +12,33 @@ data "aws_ami" "data" {
   }
 
   filter {
-    name   = "architecture"
-    values = [var.architecture]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = [var.virtualization_type]
-  }
-
-  filter {
-    name   = "root-device-type"
-    values = [var.root_device_type]
-  }
-
-  filter {
     name   = "state"
     values = ["available"]
   }
+  
+  dynamic "filter" {
+    for_each = var.architecture == null ? [] : [1]
+    content {
+      name   = "architecture"
+      values = [var.architecture]
+    }
+  }
+
+  dynamic "filter" {
+  for_each = var.virtualization_type == null ? [] : [1]
+  content {
+    name   = "virtualization-type"
+    values = [var.virtualization_type]
+  }
+}
+
+  dynamic "filter" {
+  for_each = var.root_device_type == null ? [] : [1]
+  content {
+    name   = "root-device-type"
+    values = [var.root_device_type]
+  }
+}
 
   # Optional: Filter by OS version tag
   /*dynamic "filter" {
