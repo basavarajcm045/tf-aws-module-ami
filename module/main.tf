@@ -13,6 +13,7 @@ locals {
     var.os_type == "rhel" ? data.aws_ami.rhel[0].id :
     var.os_type == "centos" ? data.aws_ami.centos[0].id :
     var.os_type == "windows" ? data.aws_ami.windows[0].id :
+    var.os_type == "custom" ? data.aws_ami.custom[0].id :
     null
   )
 
@@ -22,6 +23,7 @@ locals {
     var.os_type == "rhel" ? data.aws_ami.rhel[0].name :
     var.os_type == "centos" ? data.aws_ami.centos[0].name :
     var.os_type == "windows" ? data.aws_ami.windows[0].name :
+    var.os_type == "custom" ? data.aws_ami.custom[0].name :
     null
   )
 
@@ -32,6 +34,7 @@ locals {
     var.os_type == "rhel" ? data.aws_ami.rhel[0] :
     var.os_type == "centos" ? data.aws_ami.centos[0] :
     var.os_type == "windows" ? data.aws_ami.windows[0] :
+    var.os_type == "custom" ? data.aws_ami.custom[0] :
     null
   )
 }
