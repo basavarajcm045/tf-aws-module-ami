@@ -106,5 +106,22 @@ module "ami_graviton" {
 
 ## Inputs
 
-
 ## Outputs
+
+### Essential Outputs (Use these!)
+
+```hcl
+module.ami.ami_id              # For EC2: ami-0123456789abcdef0
+module.ami.ami_name            # ubuntu/images/hvm-ssd/ubuntu-...
+module.ami.default_ssh_user    # ubuntu (or ec2-user, Administrator)
+```
+
+### Metadata Outputs
+
+```hcl
+module.ami.ami_architecture        # x86_64 or arm64
+module.ami.ami_creation_date       # 2026-01-15T10:30:00.000Z
+module.ami.ami_owner_id            # 099720109477
+module.ami.ami_virtualization_type # hvm
+module.ami.ami_root_device_type.   # ebs
+```

@@ -57,39 +57,6 @@ architecture = "arm64"
 | terraform | >= 1.5.6 |
 | aws | >= 5.22 |
 
-
-## Usage
-
-### Basic Usage
-
-```hcl
-
-```
-
-## Configuration Guide
-
-### Basic Parameters
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `project_name` | string | - | Project name (required) |
-| `environment` | string | - | Environment (dev, staging, prod) |
-| `bucket_name` | string | "" | Bucket name (auto-generated if empty) |
-| `tags` | map | {} | Common tags |
-
-### Versioning
-
-Enable versioning for data protection and recovery:
-
-```hcl
-enable_versioning = true
-enable_mfa_delete = false  # Requires root account setup
-```
-
-### Replication (Disaster Recovery)
-
-### CORS Configuration
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -105,36 +72,15 @@ enable_mfa_delete = false  # Requires root account setup
 
 ## Module Outputs
 
-### Essential Outputs (Use these!)
-
-```hcl
-module.ami.ami_id              # For EC2: ami-0123456789abcdef0
-module.ami.ami_name            # ubuntu/images/hvm-ssd/ubuntu-...
-module.ami.default_ssh_user    # ubuntu (or ec2-user, Administrator)
-```
-
-### Metadata Outputs
-
-```hcl
-module.ami.ami_architecture        # x86_64 or arm64
-module.ami.ami_creation_date       # 2026-01-15T10:30:00.000Z
-module.ami.ami_owner_id            # 099720109477
-module.ami.ami_description         # Canonical, Ubuntu, 22.04 LTS...
-```
-
-## Outputs
-
-### Primary Outputs (Use these for EC2/ASG)
-
 | Name | Description |
 |------|-------------|
 | `ami_id` | Selected AMI ID (use for EC2 instances) |
 | `ami_name` | Selected AMI name |
-| `ami_owner_id` | AMI owner account ID |
 | `ami_architecture` | AMI architecture |
+| `ami_creation_date` | AMI creation date |
+| `ami_owner_id` | AMI owner account ID |
 | `ami_virtualization_type` | Virtualization type |
 | `ami_root_device_type` | Root device type |
-| `ami_creation_date` | AMI creation date |
 
 ## Examples
 
