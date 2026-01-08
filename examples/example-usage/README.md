@@ -117,6 +117,7 @@ module "ami_graviton" {
 }
 ```
 
+
 ### Use Case 1: Development (Latest Public AMI)
 
 

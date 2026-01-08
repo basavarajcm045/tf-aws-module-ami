@@ -1,5 +1,14 @@
-app_name    = "wqb"
-environment = "sit"
-owner       = "Platform-Team"
+ami_owner = "533267218601"
+ami_name_filter = "amzn-sample"
+ubuntu_ami_name_filter = "ubuntu/image"
 
-# As shown above, environment specific variables values can be defined respected to terraform module being used.
+ami_tag_filters = {
+  environment = "dev-test"
+  version     = "0.0.1"
+}
+
+ubuntu_ami_tag_filters = {
+  environment = "dev"
+  os_version  = "24.04"
+  base_os     = "ubuntu-24.04"
+}

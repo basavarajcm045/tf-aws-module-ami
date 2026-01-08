@@ -77,9 +77,8 @@ environment/<ENVIRONMENT>.tfvars
 
 Common inputs you may update:
 
-- `app_name`
-- `environment`
 - `owner`
+- `ami_name`
 - Any module-specific inputs from `variables.tf`
 
 ---
@@ -130,7 +129,8 @@ Terraform will fetch the ami_id for given inputs and any supporting resources de
 After the apply is complete, Terraform will show outputs such as:
 
 - `ami_id`
-- ``
+- `ami_name`
+- `ami_creation_date`
 
 These values come from the module’s `outputs.tf`.
 
