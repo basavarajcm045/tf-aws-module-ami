@@ -10,7 +10,6 @@ module "ami_amazon_linux" {
   most_recent     = true
   ami_tag_filters = {
     environment = var.ami_tag_filters["environment"]
-    team        = var.ami_tag_filters["team"]
     version     = var.ami_tag_filters["version"]
   }
 }

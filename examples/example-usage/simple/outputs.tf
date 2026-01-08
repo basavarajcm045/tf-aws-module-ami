@@ -1,4 +1,3 @@
-
 output "windows_ami_id" {
   value = module.ami_windows.ami_id
 }

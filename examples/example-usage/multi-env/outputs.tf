@@ -50,12 +50,3 @@ output "ubuntu_ami_name" {
   value       = module.ami_ubuntu.ami_name
 }
 
-output "windows_ami_id" {
-  value = module.ami_windows.ami_id
-}
-
-output "windows_ami_name" {
-  description = "Selected AMI name"
-  value       = module.ami_windows.ami_name
-}
-

@@ -16,7 +16,7 @@ module "ami" {
 
 
 # Use AMI in EC2 instance
-/*module "ec2_web_servers" {
+module "ec2_web_servers" {
   source = "../../../module/ec2"
 
   instance_count = 3
@@ -69,4 +69,4 @@ resource "aws_autoscaling_group" "web_asg" {
     value               = "web-server-asg"
     propagate_at_launch = true
   }
-}*/
+}

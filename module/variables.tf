@@ -1,7 +1,5 @@
 #AMI module input variables
 
-#========== OPERATING SYSTEM SELECTION ==========
-
 variable "os_type" {
   description = "Operating system type"
   type        = string
@@ -9,11 +7,11 @@ variable "os_type" {
 
 }
 
-variable "os_version" {
+/*variable "os_version" {
   description = "Optional OS version tag to filter (e.g., '8.5', '22.04')"
   type        = string
   default     = null
-}
+}*/
 
 #========== AMI SEARCH CRITERIA ==========
 
@@ -24,7 +22,7 @@ variable "most_recent" {
 }
 
 variable "ami_owners" {
-  description = "List of AMI owner account IDs. If null, uses default for OS type"
+  description = "List of AMI owner account IDs. If null, uses default"
   type        = list(string)
   default     = null
 

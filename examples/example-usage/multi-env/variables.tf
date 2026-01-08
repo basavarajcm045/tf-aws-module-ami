@@ -1,28 +1,42 @@
 
-variable "ami_owner" { 
+variable "ami_owner" {
   description = "The AWS account ID of the AMI owner."
   type        = string
-  default     = "533267218601" 
-  
+
 }
+
 variable "ami_name_filter" {
   description = "The name filter pattern for the AMI."
   type        = string
-  default     = "amzn-demo"
-  
-} 
+
+}
+
+variable "ubuntu_ami_name_filter" {
+  description = "The name filter pattern for the ubuntu AMI."
+  type        = string
+
+}
 
 variable "ami_tag_filters" {
   description = "A map of tag key-value pairs to filter the AMI."
   type        = map(string)
-  default     = {
-    environment = "dev"
-    team        = "platform"
-    version     = "1.1.1"
-  }
+
+}
+
+variable "ubuntu_ami_tag_filters" {
+  description = "A map of tag key-value pairs to filter the AMI."
+  type        = map(string)
+  
 }
 
 variable "architecture" {
+  description = "The architecture of the AMI (e.g., 'x86_64' or 'arm64')."
+  type        = string
+  default     = "x86_64"
+
+}
+
+variable "ubuntu_architecture" {
   description = "The architecture of the AMI (e.g., 'x86_64' or 'arm64')."
   type        = string
   default     = "x86_64"
@@ -35,9 +49,21 @@ variable "virtualization_type" {
   default     = "hvm"
 }
 
+variable "ubuntu_virtualization_type" {
+  description = "The virtualization type of the AMI (e.g., 'hvm' or 'paravirtual')."
+  type        = string
+  default     = "hvm"
+}
+
 variable "root_device_type" {
   description = "The root device type of the AMI (e.g., 'ebs' or 'instance-store')."
   type        = string
   default     = "ebs"
-} 
+}
+
+variable "ubuntu_root_device_type" {
+  description = "The root device type of the AMI (e.g., 'ebs' or 'instance-store')."
+  type        = string
+  default     = "ebs"
+}
 

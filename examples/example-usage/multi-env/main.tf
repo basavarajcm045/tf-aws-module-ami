@@ -10,7 +10,6 @@ module "ami_amazon_linux" {
   most_recent     = true
   ami_tag_filters = {
     environment = var.ami_tag_filters["environment"]
-    team        = var.ami_tag_filters["team"]
     version     = var.ami_tag_filters["version"]
   }
 
@@ -27,28 +26,17 @@ module "ami_ubuntu" {
   source = "../../../module"
 
   ami_owners      = [var.ami_owner]
-  ami_name_filter = "ubuntu/image"
+  ami_name_filter = var.ubuntu_ami_name_filter
   most_recent     = true
   ami_tag_filters = {
-    environment = "dev"
-    os_version  = "24.04"
-    base_os     = "ubuntu-24.04"
+    environment = var.ubuntu_ami_tag_filters["environment"]
+    os_version  = var.ubuntu_ami_tag_filters["os_version"]
+    base_os     = var.ubuntu_ami_tag_filters["base_os"]
   }
-  architecture        = "x86_64"
-  virtualization_type = "hvm"
-  root_device_type    = "ebs"
-}
 
-# ============================================
-# EXAMPLE: Windows 
-# ============================================
-
-module "ami_windows" {
-  source = "../../../module"
-
-  ami_owners      = [var.ami_owner]
-  ami_name_filter = "windows-2025"
-  
+  architecture        = var.ubuntu_architecture
+  virtualization_type = var.ubuntu_virtualization_type
+  root_device_type    = var.ubuntu_root_device_type
 }
 
 

@@ -40,15 +40,6 @@ data "aws_ami" "data" {
   }
 }
 
-  # Optional: Filter by OS version tag
-  /*dynamic "filter" {
-    for_each = var.os_version != null ? [var.os_version] : []
-    content {
-      name   = "tag:version"
-      values = [filter.value]
-    }
-  }*/
-
   # Additional custom tag filters
   dynamic "filter" {
     for_each = var.ami_tag_filters
@@ -57,4 +48,13 @@ data "aws_ami" "data" {
       values = [filter.value]
     }
   }
+
+  # Optional: Filter by OS version tag
+  /*dynamic "filter" {
+    for_each = var.os_version != null ? [var.os_version] : []
+    content {
+      name   = "tag:version"
+      values = [filter.value]
+    }
+  }*/
 }

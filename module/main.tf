@@ -1,5 +1,3 @@
-#Core AMI data source logic
-
 #========== CONDITIONAL AMI SELECTION ==========
 
 # This module returns the appropriate AMI ID based on the filter.
@@ -7,6 +5,11 @@
 locals {
 
   selected_ami_id = try(data.aws_ami.data[0].id, null)
+
+  selected_ami_name = try(data.aws_ami.data[0].name, null)
+
+  # Get complete AMI object for additional metadata
+  selected_ami = try(data.aws_ami.data[0], null)
 
   /*
   selected_ami_id = length(data.aws_ami.data) > 0
@@ -25,11 +28,6 @@ locals {
     null
   )*/
 
-  selected_ami_name = try(data.aws_ami.data[0].name, null)
-
-  # Get complete AMI object for additional metadata
-  selected_ami = try(data.aws_ami.data[0], null)
-
 }
 
 #========== VALIDATION ==========
@@ -39,7 +37,7 @@ resource "null_resource" "ami_validation" {
   count = local.selected_ami_id == null ? 1 : 0
 
   provisioner "local-exec" {
-    command = "echo 'ERROR: No AMI found for os_type=${var.os_type}' && exit 1"
+    command = "echo 'ERROR: No AMI found for ami_name=${var.ami_name_filter}' && exit 1"
   }
 }
 
