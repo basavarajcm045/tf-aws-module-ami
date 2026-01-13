@@ -11,12 +11,18 @@ module "ami_windows" {
 
 }
 
+resource "aws_instance" "main" {
+  ami           = module.ami_windows.ami_id
+  instance_type = "t3.micro"
+
+}
+
 # Use in EC2 module
-module "ec2" {
+/*module "ec2" {
   source = "../../../modules/ec2"
   
   ami_id = module.ami_windows.ami_id
   # ... other EC2 config
-}
+}*/
 
 

@@ -14,6 +14,12 @@ module "ami_amazon_linux" {
   }
 }
 
+resource "aws_instance" "main" {
+  ami           = module.ami_amazon_linux.ami_id
+  instance_type = "t3.micro"
+
+}
+
 # Use in EC2 module
 /*module "ec2" {
   source = "../../modules/ec2"
