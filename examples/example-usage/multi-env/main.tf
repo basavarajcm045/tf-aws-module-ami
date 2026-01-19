@@ -39,6 +39,17 @@ module "ami_ubuntu" {
   root_device_type    = var.ubuntu_root_device_type
 }
 
+/*resource "aws_instance" "main" {
+  ami           = module.ami_amazon_linux.ami_id
+  instance_type = "t3.micro"
+
+}
+
+resource "aws_instance" "this" {
+  ami           = module.ami_ubuntu.ami_id
+  instance_type = "t3.micro"
+
+}*/
 
 # Use in EC2 module
 /*module "ec2" {
@@ -48,14 +59,3 @@ module "ami_ubuntu" {
   # ... other EC2 config
 }
 */
-
-# Output all AMI information
-/*output "ami_complete_info" {
-  value = {
-    id                  = module.ami_amazon_linux.ami_id
-    name                = module.ami_amazon_linux.ami_name
-    architecture        = module.ami_amazon_linux.ami_architecture
-    creation_date       = module.ami_amazon_linux.ami_creation_date
-    
-  }
-}*/

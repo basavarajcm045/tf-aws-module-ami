@@ -33,13 +33,19 @@ locals {
 #========== VALIDATION ==========
 
 # Ensure an AMI was found
-resource "null_resource" "ami_validation" {
-  count = local.selected_ami_id == null ? 1 : 0
 
-  provisioner "local-exec" {
-    command = "echo 'ERROR: No AMI found for ami_name=${var.ami_name_filter}' && exit 1"
+resource "terraform_data" "ami_validation" {
+  input = local.selected_ami_id
+
+  lifecycle {
+    precondition {
+      condition     = local.selected_ami_id != null
+      error_message = "No AMI found for ami_name_filter = ${var.ami_name_filter}"
+    }
   }
 }
+
+
 
 #========== AMI METADATA COLLECTION ==========
 /*

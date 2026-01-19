@@ -32,38 +32,36 @@ variable "ubuntu_ami_tag_filters" {
 variable "architecture" {
   description = "The architecture of the AMI (e.g., 'x86_64' or 'arm64')."
   type        = string
-  default     = "x86_64"
 
 }
 
 variable "ubuntu_architecture" {
   description = "The architecture of the AMI (e.g., 'x86_64' or 'arm64')."
   type        = string
-  default     = "x86_64"
 
 }
 
 variable "virtualization_type" {
   description = "The virtualization type of the AMI (e.g., 'hvm' or 'paravirtual')."
   type        = string
-  default     = "hvm"
+  default     = ""
 }
 
 variable "ubuntu_virtualization_type" {
   description = "The virtualization type of the AMI (e.g., 'hvm' or 'paravirtual')."
   type        = string
-  default     = "hvm"
+  default     = ""
 }
 
 variable "root_device_type" {
   description = "The root device type of the AMI (e.g., 'ebs' or 'instance-store')."
   type        = string
-  default     = "ebs"
+  default     = ""
 }
 
 variable "ubuntu_root_device_type" {
   description = "The root device type of the AMI (e.g., 'ebs' or 'instance-store')."
   type        = string
-  default     = "ebs"
+  default     = ""
 }
 

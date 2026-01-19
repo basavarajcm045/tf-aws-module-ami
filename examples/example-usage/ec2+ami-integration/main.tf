@@ -2,7 +2,6 @@
 # EXAMPLE: Complete EC2 + AMI Integration
 # ============================================
 
-# Find AMI
 module "ami" {
   source = "../../../module/"
 

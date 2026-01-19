@@ -1,4 +1,3 @@
-#========== PRIMARY OUTPUTS (For EC2/ASG modules) ==========
 
 output "amazon_linux_ami_id" {
   value = module.ami_amazon_linux.ami_id

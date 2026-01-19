@@ -19,6 +19,13 @@ variable "most_recent" {
   description = "Return the most recent AMI"
   type        = bool
   default     = true
+
+  validation {
+    condition = (
+      var.most_recent || var.ami_name_filter != null
+    )
+    error_message = "When most_recent=false, ami_name_filter must be specified."
+  }
 }
 
 variable "ami_owners" {
@@ -36,6 +43,11 @@ variable "ami_name_filter" {
   description = "Custom AMI name filter pattern. If null, uses default for OS type"
   type        = string
   default     = null
+
+  /*validation {
+    condition     = var.ami_name_filter == null ||length(trim(var.ami_name_filter)) > 0
+    error_message = "ami_name_filter must not be empty."
+  }*/
 }
 
 variable "ami_tag_filters" {
@@ -49,6 +61,13 @@ variable "architecture" {
   type        = string
   default     = null
 
+  validation {
+    condition = (
+      var.architecture == null || contains(["x86_64", "arm64"], var.architecture)
+    )
+    error_message = "architecture must be one of: x86_64, arm64."
+  }
+
 }
 
 variable "virtualization_type" {
@@ -56,12 +75,27 @@ variable "virtualization_type" {
   type        = string
   default     = null
 
+  validation {
+    condition = (
+      var.virtualization_type == null || var.virtualization_type == "hvm"
+    )
+    error_message = "virtualization_type must be hvm."
+  }
+
 }
 
 variable "root_device_type" {
   description = "AMI root device type"
   type        = string
   default     = null
+
+  validation {
+    condition = (
+      var.root_device_type == null
+      || contains(["ebs", "instance-store"], var.root_device_type)
+    )
+    error_message = "root_device_type must be ebs or instance-store."
+  }
 
 }
 

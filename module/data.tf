@@ -1,7 +1,10 @@
 #Amazon Linux AMI data sources
+locals {
+  enable_ami_lookup = var.os_type == "custom"
+}
 
 data "aws_ami" "data" {
-  count = var.os_type == "custom" ? 1 : 0
+  count = local.enable_ami_lookup ? 1 : 0
 
   most_recent = var.most_recent
   owners      = var.ami_owners != null ? var.ami_owners : ["137112412989"] # Amazon
@@ -15,7 +18,7 @@ data "aws_ami" "data" {
     name   = "state"
     values = ["available"]
   }
-  
+
   dynamic "filter" {
     for_each = var.architecture == null ? [] : [1]
     content {
@@ -25,22 +28,21 @@ data "aws_ami" "data" {
   }
 
   dynamic "filter" {
-  for_each = var.virtualization_type == null ? [] : [1]
-  content {
-    name   = "virtualization-type"
-    values = [var.virtualization_type]
+    for_each = var.virtualization_type == null ? [] : [1]
+    content {
+      name   = "virtualization-type"
+      values = [var.virtualization_type]
+    }
   }
-}
 
   dynamic "filter" {
-  for_each = var.root_device_type == null ? [] : [1]
-  content {
-    name   = "root-device-type"
-    values = [var.root_device_type]
+    for_each = var.root_device_type == null ? [] : [1]
+    content {
+      name   = "root-device-type"
+      values = [var.root_device_type]
+    }
   }
-}
 
-  # Additional custom tag filters
   dynamic "filter" {
     for_each = var.ami_tag_filters
     content {
