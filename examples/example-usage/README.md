@@ -3,7 +3,6 @@
 
 - [Usage](#usage)
 - [Common Use Cases](#common-use-cases)
-- [Inputs](#inputs)
 - [Outputs](#outputs)
 
 ## Usage
@@ -46,7 +45,7 @@ terraform apply
 
 ```hcl
 module "ami_dev" {
-  source = "../../module"
+  source = "../../module/"
 
   ami_owners      = "123456789012"
   ami_name_filter = "amzn2-ami-hvm-*-x86_64-gp2"
@@ -61,7 +60,7 @@ module "ami_dev" {
 
 ```hcl
 module "ami_prod" {
-  source = "./modules/ami"
+  source = "../../module/"
 
   ami_owners      = ["123456789012"]
   ami_name_filter = "prod-golden-v2.1.0"
@@ -69,7 +68,7 @@ module "ami_prod" {
   ami_tag_filters = {
     environment = "production"
     Approved    = "true"
-    version     = "1.1.1"
+    version     = "2.1.0"
     SHA         = "abc123"
   }
 }
@@ -79,7 +78,7 @@ module "ami_prod" {
 
 ```hcl
 module "ami_shared" {
-  source = "./modules/ami"
+  source = "../../module/"
 
   ami_owners = [
     "123456789012",  # Account A
@@ -96,7 +95,7 @@ module "ami_shared" {
 
 ```hcl
 module "ami_graviton" {
-  source = "./modules/ami"
+  source = "../../module/"
 
   ami_owners      = ["123456789012"]
   ami_name_filter = "prod-golden-v2.1.0"

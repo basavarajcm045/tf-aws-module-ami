@@ -5,12 +5,11 @@
 - [Overview](#overview)
 - [Features](#Features)
 - [Requirements](#Requirements)
-- [Usage](#usage)
 - [Configuration Guide](#configuration-guide)
-- [Examples](#examples)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
-- [Notes](#notes)
+- [Examples](#examples)
+- [Testing](#testing)
 
 ## Overview
 
@@ -46,7 +45,6 @@ architecture = "arm64"
 # Module automatically provides:
 - ami_id                  # For EC2 instances
 - ami_name                # For documentation
-- default_ssh_user        # ubuntu, ec2-user, etc.
 - ami_creation_date       # When AMI was created
 ```
 
@@ -70,7 +68,7 @@ architecture = "arm64"
 | `root_device_type` | AMI root device type | `string` | `"ebs"` | no |
 
 
-## Module Outputs
+## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -84,7 +82,7 @@ architecture = "arm64"
 
 ## Examples
 
-See the `examples/` directory for complete working examples:
+See the `examples/example-usage` directory for complete working examples:
 
 - `examples/example-usage/simple-amazon-linux/` - Amazon Linux example
 - `examples/example-usage/ec2_ami-integartion/` - shows ec2 module integration
